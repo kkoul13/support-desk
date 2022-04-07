@@ -19,17 +19,19 @@ function App() {
         <div className="container">
           <Header/>
           <Routes>
+            
             <Route path="/" element={<Home />} />
 
             {/* <Route path= {'/login' | '/Login' } element={<Login/>}/>    */}
 
-            {["/login", "/Login"].map((path) => ( 
-              <Route path={path} element={<Login />} key={Date.now()}/>
-            ))}
-
+            {
             
+            ["/login", "/Login"].map((path) => ( <Route path={path} element={<Login />} key={Date.now()}/>))
+            
+            }            
 
             <Route path="/register" element={<Register />} />
+
           </Routes>
         </div>
       </Router>

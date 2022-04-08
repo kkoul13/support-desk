@@ -18,7 +18,7 @@ function Login() {
 
     const dispatch = useDispatch()
 
-    const {user, isLoading , isSuccess , message} = useSelector((state) =>(state.auth))
+    const {user, isLoading , isSuccess , message} = useSelector((state) =>(state.auth))  //auth in store
 
     const onChange =(e)=>{
        setFormData((prevState)=>({

@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../features/auth/authSlice'
+import authReducerrrr from '../features/auth/authSlice'
 
 
 export const store = configureStore({
   reducer: {
-    auth:authReducer       // tree name in chrome
+    auth:authReducerrrr      // tree name in chrome
   },
 });
 

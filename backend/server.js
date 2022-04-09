@@ -18,6 +18,7 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/api/user',require('./routes/userRouter'))
+app.use('/api/tickets',require('./routes/ticketRoute'))
 app.use(errorHandler)
 
 

@@ -16,22 +16,32 @@ const initialState = {
 
 // Regsiter User
 
-export const register = createAsyncThunk('auth/register', async(user,thunkAPI)=>{
+export const register = createAsyncThunk('auth/regist', async(user,thunkAPI)=>{
     try{
 
         return await authService.register(user)
+        
     }
 
     catch(error){
 
-        const message = (error.response && error.response.data&&error.response.data.message||error.message||error.toString())
-        return thunkAPI.rejectWithValue(message)
+        // const message = error.response.data.message
+        // const message = (error.response && error.response.data&&error.response.data.message||error.message||error.toString())
+        // console.log('authslice if error' , error , error.response)
+        return thunkAPI.rejectWithValue(error.response.data.message)
+        // return message
     }
 })
 
 //Login Users
 export const login = createAsyncThunk('auth/login', async(user,thunkAPI)=>{
     console.log(user)
+})
+
+//Logout User
+
+export const logout = createAsyncThunk('auth/logout', async()=>{
+     await authService.logout()
 })
 
 export const authSlice = createSlice({
@@ -51,14 +61,15 @@ export const authSlice = createSlice({
 
         .addCase(register.pending ,(state)=>{         // Responses from register
             state.isLoading=true
-            console.log("register pending")
+            // console.log("register pending")
         })
 
         .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
         state.user = action.payload
-        console.log("register fulfilled")
+        console.log(action)
+        // console.log("register fulfilled" )
       })
 
         .addCase(register.rejected ,(state,action)=>{
@@ -66,10 +77,15 @@ export const authSlice = createSlice({
             state.message = action.payload
             state.user = null
             state.isError = true
+            // console.log('register rejected')
+        })
+
+        .addCase(logout.fulfilled , (state)=>{
+            state.user = null
         })
         
     }
 })
 
-export const {reset} = authSlice.actions
+export const {reset } = authSlice.actions
 export default authSlice.reducer

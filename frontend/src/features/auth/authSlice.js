@@ -101,7 +101,7 @@ export const authSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.user = action.payload
-        console.log(action)
+        // console.log(action)
         // console.log("login fulfilled" )
       })
 

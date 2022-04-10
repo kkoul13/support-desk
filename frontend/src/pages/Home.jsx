@@ -11,7 +11,7 @@ function Home() {
         <p> Please choose from options</p>
     </section>
 
-    <Link to='/newticket' className="btn btn-reverse btn-block">
+    <Link to='/new-ticket' className="btn btn-reverse btn-block">
         <FaQuestionCircle/> Create new ticket
 
     </Link>

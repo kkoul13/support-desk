@@ -11,7 +11,7 @@ const protect = asyncHandler(async(req,res,next)=>{
         try{
             // Generating user token from Bearer token
            let token = req.headers.authorization.split(' ')[1]
-
+            // console.log(req.headers.authorization.split(' '))
             // Decoding user token for getting id
             const decode = jwt.verify(token , process.env.JWT_Secret)
 

@@ -116,6 +116,7 @@ h3 {
   
 }
 
+
 .test{
   padding-bottom: 20px;
 }
@@ -184,6 +185,7 @@ h3 {
 .btn-back {
   width: 150px;
   margin-bottom: 20px;
+  margin-left: 635px;
 }
 
 .btn:hover {

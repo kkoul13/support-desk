@@ -1,10 +1,11 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import {  useNavigate, useParams } from "react-router-dom"
 import { toast } from "react-toastify"
 import BackButton from "../components/BackButton"
 import Spinner from "../components/Spinner"
-import { getTicket } from "../features/tickets/ticketSlice"
+import { closeTicket, getTicket , reopenTicket } from "../features/tickets/ticketSlice"
+
 
 
 function Ticket() {
@@ -13,6 +14,9 @@ function Ticket() {
     const dispatch = useDispatch()
     const params = useParams()
     const {ticketId} = useParams()
+    const navigate = useNavigate()
+    const [value, setValue] = useState(0);
+    
 
     useEffect(()=>{
         if(isError){
@@ -21,15 +25,37 @@ function Ticket() {
 
         dispatch(getTicket(ticketId))
         //eslint-disable-next-line
-    } , [ticketId , message , isError])
+    } , [ticketId , message , isError,value ])
 
     if(isLoading)return (<Spinner/>)
     if(isError) return <h1>Something went wrong</h1>
 
+    const onCloseTicket=()=>{
+        dispatch(closeTicket(ticketId))
+        setTimeout(()=>{
+            setValue(value => value + 1)
+            toast.success("Ticket Closed")
+        } , 500)
+        
+       
+    }
+
+    const onReopenTicket=()=>{
+        
+        dispatch(reopenTicket(ticketId))
+        
+        setTimeout(()=>{
+            setValue(value => value + 1)
+            toast.success("Ticket Reopened")
+        } , 500)
+                      
+    }
+    
+
   return (
     <div className="ticket-page">
         <header className="ticket-header">
-            <BackButton url='/'/>
+            <BackButton url='/tickets'/>
             <h2>
                 Ticket ID : {ticket._id}
                 <span className={`status status-${ticket.status}`}>{ticket.status}</span>
@@ -43,6 +69,9 @@ function Ticket() {
                 <p>{ticket.description}</p>
             </div>
         </header>
+
+        {ticket.status!=='Closed' && <button onClick={onCloseTicket} className="btn btn-block btn-danger">Close Ticket</button> }
+        {ticket.status ==='Closed' && <button onClick={onReopenTicket} className="btn btn-block">Reopen Ticket</button> }
     </div>
   )
 }

@@ -16,7 +16,7 @@ function Tickets() {
         return()=>{
             if(isSuccess) dispatch(reset())
         }
-    } , [isLoading , isSuccess , dispatch])
+    } , [ isSuccess , dispatch])
 
     useEffect(()=>{
         dispatch(getTickets())

@@ -10,7 +10,7 @@ const getTickets = asyncHandler(async(req,res)=>{
     // console.log(req.user.id)
     // console.log(req.user._id)
     // const user = await Users.findById(req.)
-    const tickets = await Ticket.findOne({user:req.user.id})
+    const tickets = await Ticket.find({user:req.user.id})
     res.status(200).json(tickets)
 })
 
@@ -28,7 +28,7 @@ const createTickets = asyncHandler(async(req,res)=>{
         product,
         description,
         user : req.user.id,
-        status:'new'
+        status:'New'
     })
 
     res.status(201).json(ticket)

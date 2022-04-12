@@ -40,7 +40,7 @@ function Login() {
         }
 
         if(isSuccess){
-            navigate('/new-ticket')
+            navigate('/')
         }
 
         dispatch(reset())                              // Resetting form data

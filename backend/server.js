@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const colours = require('colours')
 const dotenv = require('dotenv').config()
 const {errorHandler} = require('./middleware/errorMiddleware')
@@ -13,12 +14,25 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
-app.get('/',(req,res)=>{
-    res.status(200).json({something :`BRUH ${PORT}`})
-})
+
 
 app.use('/api/user',require('./routes/userRouter'))
 app.use('/api/tickets',require('./routes/ticketRoute'))
+
+//Server Frontend
+if(process.env.NODE_ENV=='production'){
+    app.use(express.static(path.join(__dirname,'../frontend/build')))
+    app.get('*' , (req,res)=>res.sendFile(__dirname , '../' , 'frontend' , 'build' , 'index.html'))
+}
+
+else{
+    
+    app.get('/',(req,res)=>{
+        res.status(200).json({something :`BRUH ${PORT}`})
+    })
+
+}
+
 app.use(errorHandler)
 
 

@@ -63,6 +63,7 @@ function Ticket() {
             <h3>
                Date Submitted : {new Date(ticket.createdAt).toLocaleString('en-IN')} 
             </h3>
+            <h3>Product : {ticket.product}</h3>
             <hr/>
             <div className="ticket-desc">
                 <h3>Ticket Description</h3>

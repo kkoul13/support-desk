@@ -83,11 +83,11 @@ const loginUser = asyncHandler(async(req,res) =>{
 }
 )
 
-const getMe = asyncHandler(async(req,res)=>{
-    // res.send('me')
-    const user ={
-        id : req.user._id,
-        email : req.user.email,
+const getMe = asyncHandler(async(req,res)=>{                          // Get me is the next step after protect middleware
+    // res.send('me')                                                 // When any routes gets past the auth middleware
+    const user ={                                                     // they will access getme, which will provide                 
+        id : req.user._id,                                            // the details of currently logged in user     
+        email : req.user.email,                                       // these details can be used for whatever, idc
         name : req.user.name
     }
     res.status(200).json(user)

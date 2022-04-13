@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {  useNavigate, useParams } from "react-router-dom"
+import {  useParams } from "react-router-dom"
 import { toast } from "react-toastify"
 import Modal from 'react-modal'
 import BackButton from "../components/BackButton"
 import NoteItem from "../components/NoteItem"
 import Spinner from "../components/Spinner"
-import { createNote, getNotes , reset as notesReset } from "../features/notes/noteSlice"
-import { closeTicket, createTicket, getTicket , reopenTicket } from "../features/tickets/ticketSlice"
+import { createNote, getNotes  } from "../features/notes/noteSlice"
+import { closeTicket,  getTicket , reopenTicket } from "../features/tickets/ticketSlice"
 import { FaPlus } from "react-icons/fa"
 
 const customStyles ={
@@ -31,7 +31,7 @@ function Ticket() {
     const [value, setValue] = useState(0);
     const [modalIsOpen , setModalIsOpen] = useState(false)
     const [noteText , setNoteText] = useState('')
-    const {ticket , isLoading , isSuccess , isError , message} = useSelector((state)=>state.tickets)
+    const {ticket , isLoading ,isError , message} = useSelector((state)=>state.tickets)
     const {notes , isLoading:notesIsLoading} = useSelector((state)=>state.notes)
     const dispatch = useDispatch()
     

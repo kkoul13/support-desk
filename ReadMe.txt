@@ -3,3 +3,5 @@ npm i express dotenv colours mongoose brcypt concurrently express-async-handler 
 npm i -D nodemon
 
 npm i react-router-dom react-icons react-toastify react-redux react-modal axios
+
+Deployed : https://mysupportkashyap.herokuapp.com/
